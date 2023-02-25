@@ -10,10 +10,7 @@
 #include <vector>
 
 
-constexpr std::size_t ARRAY_SIZE = 1e6;
-
-
-constexpr std::size_t JOB_SIZE = 1e3;
+//constexpr std::size_t JOB_SIZE = 1e3;
 
 
 void InitializeArray(int* begin, const int* end)
@@ -27,7 +24,7 @@ void InitializeArray(int* begin, const int* end)
 
 void WithoutProfiler(benchmark::State& rState)
 {
-    std::vector<int> array(ARRAY_SIZE);
+    std::vector<int> array(rState.range(0));
     InitializeArray(array.data(), array.data() + array.size());
 
     const auto job = [&array]() {
@@ -39,16 +36,16 @@ void WithoutProfiler(benchmark::State& rState)
     };
 
     for (auto dummy : rState) {
-        for (std::size_t i=0; i<JOB_SIZE; ++i) {
+        //for (std::size_t i=0; i<JOB_SIZE; ++i) {
             job();
-        }
+        //}
     }
 }
 
 
 void WithProfiler(benchmark::State& rState)
 {
-    std::vector<int> array(ARRAY_SIZE);
+    std::vector<int> array(rState.range(0));
     InitializeArray(array.data(), array.data() + array.size());
 
     const auto job = [&array]() {
@@ -61,17 +58,17 @@ void WithProfiler(benchmark::State& rState)
     };
 
     for (auto dummy : rState) {
-        for (std::size_t i=0; i<JOB_SIZE; ++i) {
+        //for (std::size_t i=0; i<JOB_SIZE; ++i) {
             job();
-        }
+        //}
     }
 }
 
 
-BENCHMARK(WithoutProfiler);
+BENCHMARK(WithoutProfiler)->Threads(16)->RangeMultiplier(4)->Range(1<<4, 1<<12);
 
-BENCHMARK(WithProfiler);
+BENCHMARK(WithProfiler)->Threads(16)->RangeMultiplier(4)->Range(1<<4, 1<<12);
 
-#endif
+#endif // __has_include "utilities/profiler.h"
 
 BENCHMARK_MAIN();
