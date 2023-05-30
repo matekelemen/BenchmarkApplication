@@ -18,3 +18,9 @@ target_link_libraries(profiler_benchmark PUBLIC
                       KratosCore
                       BenchmarkCore
                       benchmark::benchmark)
+
+add_executable(expression_benchmark drivers/expression_benchmark.cpp)
+target_link_libraries(expression_benchmark PUBLIC
+                      KratosCore
+                      BenchmarkCore
+                      benchmark::benchmark)
