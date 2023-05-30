@@ -23,12 +23,12 @@ std::unique_ptr<Model> MakeModel()
 
     using NodePtr = decltype(std::declval<ModelPart>().CreateNewNode(1, 0.0, 0.0, 0.0));
     std::array<NodePtr, 4> nodes {
-        NodePtr(new Node<3>(1, 0.0, 0.0, 0.0)),
-        NodePtr(new Node<3>(2, 0.0, 1.0, 0.0)),
-        NodePtr(new Node<3>(3, 1.0, 1.0, 0.0)),
-        NodePtr(new Node<3>(4, 1.0, 0.0, 0.0))
+        NodePtr(new Node(1, 0.0, 0.0, 0.0)),
+        NodePtr(new Node(2, 0.0, 1.0, 0.0)),
+        NodePtr(new Node(3, 1.0, 1.0, 0.0)),
+        NodePtr(new Node(4, 1.0, 0.0, 0.0))
     };
-    Quadrilateral2D4<Node<3>> geometry(nodes[0], nodes[1], nodes[2], nodes[3]);
+    Quadrilateral2D4<Node> geometry(nodes[0], nodes[1], nodes[2], nodes[3]);
 
     Parameters parameters(R"({
         "number_of_divisions" : 500,
