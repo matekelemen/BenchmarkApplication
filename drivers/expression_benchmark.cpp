@@ -5,9 +5,10 @@
 #include "custom_utilities/common.hpp"
 
 // --- Core Includes ---
-#include "expression/specialized_container_expression.h"
 #include "expression/container_data_io.h"
 #include "expression/container_expression.h"
+#include "expression/variable_expression_io.h"
+#include "includes/variables.h"
 
 
 void LiteralFlatExpression(benchmark::State& rState)
@@ -17,15 +18,16 @@ void LiteralFlatExpression(benchmark::State& rState)
     Kratos::ModelPart& r_model_part = r_model.GetModelPart("main");
 
     // Create a literal expression
-    using NodeExpression = Kratos::SpecializedContainerExpression<
+    using NodeExpression = Kratos::ContainerExpression<
         Kratos::ModelPart::NodesContainerType,
-        Kratos::ContainerDataIO<Kratos::ContainerDataIOTags::Historical>
+        Kratos::MeshType::Local
     >;
     NodeExpression expression(r_model_part);
-    expression.Read(Kratos::DISPLACEMENT);
 
     for (auto dummy : rState) {
-        expression.Evaluate(Kratos::DISPLACEMENT);
+        Kratos::VariableExpressionIO::Read<Kratos::MeshType::Local>(expression,
+                                                                    &Kratos::DISPLACEMENT,
+                                                                    true);
         benchmark::DoNotOptimize(r_model_part);
     }
 }
