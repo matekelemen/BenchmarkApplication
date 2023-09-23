@@ -1,0 +1,7 @@
+/*
+!.gitignore
+!*.hpp
+!*.cpp
+!*.hpp.in
+!*.cpp.in
+cmake_variables.cpp

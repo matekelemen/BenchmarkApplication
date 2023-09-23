@@ -1,7 +1,10 @@
-*
+/*
 !.gitignore
+!.gitattributes
 !CMakeLists.txt
-!drivers
 !custom_utilities
-!*.cpp
-!*.hpp
+!drivers/*cpp
+
+!drivers
+!data
+!custom_utilities
