@@ -1,0 +1,16 @@
+/// @author Máté Kelemen
+
+// --- Benchmark Includes ---
+#include "cmake_variables.hpp"
+
+
+namespace Kratos {
+
+
+std::filesystem::path GetBenchmarkDataDir()
+{
+    return std::filesystem::path("@KRATOS_BENCHMARK_DATA_DIR@");
+}
+
+
+} // namespace Kratos
