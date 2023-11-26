@@ -21,6 +21,8 @@ class ModelFactory
 public:
     static Model& GetModel();
 
+    static void FillModelPart(ModelPart& rModelPart);
+
 private:
     static std::unique_ptr<KratosApplication> mpApplication;
 

@@ -70,5 +70,3 @@ BENCHMARK(WithoutProfiler)->Threads(16)->RangeMultiplier(4)->Range(1<<4, 1<<12);
 BENCHMARK(WithProfiler)->Threads(16)->RangeMultiplier(4)->Range(1<<4, 1<<12);
 
 #endif // __has_include "utilities/profiler.h"
-
-BENCHMARK_MAIN();

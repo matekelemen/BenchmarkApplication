@@ -4,7 +4,7 @@
 #include "benchmark/benchmark.h"
 
 // --- Benchmark Includes ---
-#include "custom_utilities/cmake_variables.hpp"
+#include "BenchmarkApplication/cmake_variables.hpp"
 
 // --- Med Includes ---
 #include "custom_io/med_model_part_io.h"
@@ -36,5 +36,3 @@ void LoadMedFresh(benchmark::State& rState)
 }
 
 BENCHMARK(LoadMedFresh);
-
-BENCHMARK_MAIN();

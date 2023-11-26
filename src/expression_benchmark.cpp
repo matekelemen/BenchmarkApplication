@@ -2,7 +2,7 @@
 #include "benchmark/benchmark.h"
 
 // --- Benchmark Includes ---
-#include "custom_utilities/common.hpp"
+#include "BenchmarkApplication/common.hpp"
 
 // --- Core Includes ---
 #include "expression/container_data_io.h"
@@ -32,8 +32,4 @@ void LiteralFlatExpression(benchmark::State& rState)
     }
 }
 
-
 BENCHMARK(LiteralFlatExpression);
-
-
-BENCHMARK_MAIN();

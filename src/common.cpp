@@ -1,5 +1,5 @@
 // --- Internal Includes ---
-#include "custom_utilities/common.hpp"
+#include "BenchmarkApplication/common.hpp"
 
 
 namespace Kratos {
@@ -13,13 +13,11 @@ std::unique_ptr<KratosApplication> MakeApplication()
     return std::make_unique<KratosApplication>("BenchmarkApplication");
 }
 
-std::unique_ptr<Model> MakeModel()
-{
-    auto p_model = std::make_unique<Model>();
 
-    auto& r_model_part = p_model->CreateModelPart("main");
-    r_model_part.SetBufferSize(1);
-    r_model_part.AddNodalSolutionStepVariable(DISPLACEMENT);
+void FillModelPart(ModelPart& rModelPart)
+{
+    rModelPart.SetBufferSize(1);
+    rModelPart.AddNodalSolutionStepVariable(DISPLACEMENT);
 
     using NodePtr = decltype(std::declval<ModelPart>().CreateNewNode(1, 0.0, 0.0, 0.0));
     std::array<NodePtr, 4> nodes {
@@ -36,7 +34,13 @@ std::unique_ptr<Model> MakeModel()
     })");
 
 
-    StructuredMeshGeneratorProcess(geometry, r_model_part, parameters).Execute();
+    StructuredMeshGeneratorProcess(geometry, rModelPart, parameters).Execute();
+}
+
+std::unique_ptr<Model> MakeModel()
+{
+    auto p_model = std::make_unique<Model>();
+    FillModelPart(p_model->CreateModelPart("main"));
     return p_model;
 }
 
@@ -56,6 +60,12 @@ Model& ModelFactory::GetModel()
     }
 
     return *ModelFactory::mpModel;
+}
+
+
+void ModelFactory::FillModelPart(ModelPart& rModelPart)
+{
+    Kratos::FillModelPart(rModelPart);
 }
 
 

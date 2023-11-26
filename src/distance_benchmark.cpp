@@ -2,7 +2,7 @@
 #include "benchmark/benchmark.h"
 
 // --- Internal Includes ---
-#include "custom_utilities/common.hpp"
+#include "BenchmarkApplication/common.hpp"
 
 
 void BruteForcePointLocator(benchmark::State& rState)
@@ -30,6 +30,3 @@ void BruteForcePointLocator(benchmark::State& rState)
 
 
 BENCHMARK(BruteForcePointLocator);
-
-
-BENCHMARK_MAIN();

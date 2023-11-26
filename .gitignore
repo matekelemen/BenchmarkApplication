@@ -5,6 +5,7 @@
 !custom_utilities
 !drivers/*cpp
 
-!drivers
+!src
+!include
 !data
 !custom_utilities

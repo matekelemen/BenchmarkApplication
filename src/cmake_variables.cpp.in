@@ -1,7 +1,7 @@
 /// @author Máté Kelemen
 
 // --- Benchmark Includes ---
-#include "cmake_variables.hpp"
+#include "BenchmarkApplication/cmake_variables.hpp"
 
 
 namespace Kratos {
